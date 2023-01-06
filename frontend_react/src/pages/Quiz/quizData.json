@@ -1,0 +1,22 @@
+{
+    "questions": [
+        {
+            "question": "Quelle est la capitale de la France?",
+            "choices": [
+                "Paris",
+                "Londres",
+                "Rome"
+            ],
+            "answer": "Paris"
+        },
+        {
+            "question": "Combien de continents y a-t-il sur Terre?",
+            "choices": [
+                "4",
+                "5",
+                "6"
+            ],
+            "answer": "6"
+        }
+    ]
+}
