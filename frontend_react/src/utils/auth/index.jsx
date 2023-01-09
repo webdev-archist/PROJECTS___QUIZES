@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(false)
     , [user, setUser] = useState({})
     , [datas, setDatas] = useState(false) 
-
+/*
     useEffect(() => {fetch('http://localhost:3000/api/data')
         .then((res) => {
             return res.json()
@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
             setDatas(contents)
         })
 	}, [])
+*/
 
     return (
         <AuthContext.Provider value={{ token, setToken, user, setUser, datas, setDatas }}>

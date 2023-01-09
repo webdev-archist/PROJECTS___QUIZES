@@ -9,27 +9,108 @@ body{}
 
 
 body{
-  >header{
-    
-  }
-  >nav{
+  background:darkslateblue;
+  display: flex;
+  justify-content: center;
+  >div{
+    position: absolute;
+    width:550px;
+    height: 100%;
+    background:white;
+    margin:auto;
+    border:solid;
+    border-width:0 3px;
+    overflow: hidden;
+    >*{padding:0 2em;}
+    >header{
+      position: relative;
+      border-bottom: solid;
+      box-shadow: 0 0 10px 1px;
+      margin-bottom: 30px;
+      &.gotWrong{background: rgba(111,0,0,.3);}
+      &.gotTrue{background: rgba(0,111,0,.3);}
+      >h1{
+        position: absolute;
+        top:0;
+        right: 0;
+        padding:0 0 5px 5px;
+        border-radius:5px;
+        border:solid;
+        border-width: 0 0 3px 3px;
+        background:wheat;
+        margin: -5px 0px;
+      }
+      >div#timing{
+        position: absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        height:5px;
+        >div{transition:width .9s;background:red;height:100%;}
+      }
+      >h2{
 
-  }
-  >main{
-    >section{
+      }
+      >section#history{
+
+      }
+      >section#stats{
+        >ul{
+          &:not(.active){display:none;}
+          display: flex;
+          justify-content: space-evenly;
+          position: absolute;
+          bottom: -30px;
+          width: 100%;
+          border-bottom: solid;
+          left: 0;
+          background: wheat;
+          opacity: .8;
+          >li{
+            
+          }
+        }
+      }
+      >button{
+        position: fixed;
+        top:0;
+        width:50px;
+        height:50px;
+        cursor:pointer;
+        &#restart{
+          background: orangered;
+          left:0%;
+        }
+        &#pauseResume{
+          background: wheat;
+          right:0%;
+        }
+        &.disabled{
+          opacity:.3;
+          background:silver !important;
+          cursor:not-allowed;
+        }
+      }
     }
-    >article{
+    >nav{
+
     }
-    .carte{
+    >main{
+      >section{
+      }
+      >article{
+      }
+      .carte{
+      }
     }
-  }
-  >footer{
-    >h4{
-    }
-    >h5,>a{}
-    >h5{
-    }
-    >a{
+    >footer{
+      >h4{
+      }
+      >h5,>a{}
+      >h5{
+      }
+      >a{
+      }
     }
   }
 }
