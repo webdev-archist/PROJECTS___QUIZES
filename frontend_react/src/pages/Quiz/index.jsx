@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import quizData from "./quizData.json";
+import React, { useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
+import quizData from "./quizData.json"
 
 export default function Quiz() {
   // const default_timing = confirm("choisir la durée du timing pour chaque question: (défaut = 5s") - 1
@@ -44,18 +45,49 @@ export default function Quiz() {
   }
   function handleAnswer(e) {
     const selectedAnswer = e.currentTarget.dataset.value;
-    if (selectedAnswer === questions[currentQuestion].answer) {
-      setScore((score) => score + 1);
-      setIsWrong("correct")
-    }else setIsWrong(true)
+    if(!answered)
+      if (selectedAnswer === questions[currentQuestion].answer) {
+        // alert('pl')
+        setScore((score) => score + 1);
+        setIsWrong("correct")
+        e.target.classList.add('correct')
+      }else{
+        setIsWrong(true)
+        e.target.classList.add('wrong')
+      }
     if(answered || currentTime === 0)setDoGoNext(true)
-    setAnswered(true);
+    if(!answered){
+      setAnswered(true)
+      Array.from(
+        document.getElementById("choices").querySelectorAll('li')
+      ).forEach(el=>{
+        if (el.innerHTML === questions[currentQuestion].answer)
+          el.classList.add('wasCorrect')
+      })
+    }else 
+      Array.from(
+        document.getElementById("choices").querySelectorAll('li')
+      ).forEach(el=>{
+        el.classList.remove('wrong')
+        el.classList.remove('correct')
+        el.classList.remove('wasCorrect')
+      })
   }
 
   useEffect(() => {
     if(currentTime == 0){
       clearInterval(timer)
       setIsWrong(true)
+      Array.from(
+        document.getElementById("choices").querySelectorAll('li')
+      ).forEach(el=>{
+        console.log(el.innerHTML === questions[currentQuestion].answer)
+        console.log(el.innerHTML)
+        console.log(questions[currentQuestion].answer)
+        console.log("\n\n\n")
+        if (el.innerHTML === questions[currentQuestion].answer)
+          el.classList.add('wasCorrect')
+      })
     }
     if (doGoNext) {
       setCurrentQuestion((currentQuestion) => currentQuestion + 1);
@@ -106,9 +138,11 @@ export default function Quiz() {
       </div>
       {/* {currentTime} - {default_timing} */}
       <button id="restart" onClick={handleRestart}>↺</button>
-      <button id="pauseResume" onClick={handlePauseResume} className={(answered||currentTime==0)&&"disabled"}style={{background:isPaused&&"red"}}>{isPaused?"⏯":"⏸️"}</button>
+      <button id="pauseResume" onClick={handlePauseResume} className={(answered||currentTime==0)?"disabled":undefined}style={{background:isPaused&&"red"}}>{isPaused?"⏯":"⏸️"}</button>
+      <button id="exit"><Link to="/settings"><span>出</span><span>路</span><span>EXIT</span></Link></button>
     </header>
     <main>
+      {/* {questions[currentQuestion].answer} */}
       <ul id="choices">
         {currentChoices.map((q,i) => (
           <li key={i} data-value={q.answer} onClick={handleAnswer}>
@@ -118,8 +152,8 @@ export default function Quiz() {
       </ul>
     </main>
 
-    <footer>
-      <button id="sheet"></button>
+    <footer style={{display:answered||currentTime===0?"block":"none"}}>
+      <button id="sheet">GO TO SHEET</button>
       <div className="actions"><button id="addCutomComments"></button></div>
       <div className="infos"><span>N1</span><span>difficult</span></div>
     </footer>

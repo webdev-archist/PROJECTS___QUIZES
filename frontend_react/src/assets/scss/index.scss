@@ -83,7 +83,13 @@ body{
         }
         &#pauseResume{
           background: wheat;
-          right:0%;
+          left:100px;
+        }
+        &#exit{
+          background: red;
+          color:white;
+          font-weight: 900;
+          right:0;
         }
         &.disabled{
           opacity:.3;
@@ -96,14 +102,57 @@ body{
 
     }
     >main{
-      >section{
-      }
-      >article{
-      }
-      .carte{
+      ul{
+        &#choices{}
+        >li{
+          padding: 1em;
+          border-radius: 5px;
+          background: silver;
+          margin: 1em 0;
+          cursor: pointer;
+          &:hover{background: wheat;}
+          &.correct{background: greenyellow;}
+          &.wasCorrect{background: rgba(173,255,47,.3);border:1px dotted black;}
+          &.wrong{background: orangered;}
+        }
       }
     }
     >footer{
+      height: 60px;
+      position: absolute;
+      bottom: 0;
+      border-top: solid;
+      width: 100%;
+      background: darkblue;
+      color:white;
+      button{
+
+        &#sheet{
+          z-index: 10;
+          width:150px;
+          height:50px;
+          border-radius: 50px;
+          position: absolute;
+          left:calc(50% - 75px);
+          top: 5px;
+          cursor:pointer;
+          &:hover{background:rgba(192,192,192);}
+        }
+      }
+      >div{
+        z-index: 1;
+        position: absolute;
+        height:100%;
+        width:50%;
+        display: flex;
+        &.actions{
+          left:0; 
+        }
+        &.infos{
+          right:0;
+          justify-content: end;
+        }
+      }
       >h4{
       }
       >h5,>a{}
